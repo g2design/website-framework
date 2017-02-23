@@ -1,0 +1,19 @@
+title = "Page Title"
+route = "/"
+layout = "layouts/test.twig"
+
+==
+
+$page->before(function($page){
+	$page->params['test']= 'Testing reference variable';
+});
+
+==
+{% set layout = this.config().layout %}
+{% extends [layout, "layouts/base.twig"] %}
+
+{% block content %}
+	
+	<h1>Hello {{ arguments[0] }} {{ test }}</h1>
+{% endblock %}
+

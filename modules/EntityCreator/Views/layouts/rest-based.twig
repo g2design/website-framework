@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>G2 Design Backend</title>
+		<base href="{{ constant('BASE_URL') }}">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+		<script
+			src="https://code.jquery.com/jquery-3.1.1.min.js"
+			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		crossorigin="anonymous"></script>
+		<script src="admin/app/app.js"></script>
+{#		<script src="admin/app/product/controller.js"></script>#}
+		<script src="admin/js/custom.js"></script>
+
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="HelloWorldApp">
+			<div ng-controller="HelloWorldController">
+				<h1>{{greeting}}</h1>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<font style="font-family: Helvetica; font-size: 16px;" >
+
+	<p><strong>{{ options.name }}</strong></p>
+	<p><i>{{ options.title }}</i></p>
+</font>
+<img src="sig/logo.png" alt="Killarney Logo"> <br>
+<font style="font-family: Helvetica; font-size: 14px;">
+	<p>
+		{% if options.cell %}<strong>Cell</strong>  {{ options.cell }}  | {% endif %}
+			<strong>Tel</strong>  {{ options.tel }}  |  <strong>Fax</strong>  {{ options.fax }}
+		</p>
+		<p>
+			<strong>Email</strong>  {{ options.email }}  |  <strong>Web</strong>  <a style="color: black;text-decoration: none;" href="http://www.wpmc.co.za">www.wpmc.co.za</a>
+		</p>
+		<p>{{ options.address }}
+			<br><br>
+			<img src="sig/wpmc.png" alt="Western Province Motor Club">
+		</p>
+	</font>
+	
