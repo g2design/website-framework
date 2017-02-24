@@ -18,7 +18,7 @@ class Index extends \G2Design\G2App\Controller {
 	
 	
 	function getLogin() { // Login Form
-		\G2Design\G2App\View::getInstance('layouts/rest-based')->render();
+		\G2Design\G2App\View::getInstance('pages/login')->render();
 	}
 	
 	function getDashboard() { // Dashboard display

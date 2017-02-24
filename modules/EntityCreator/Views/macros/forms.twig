@@ -1,0 +1,16 @@
+{% macro input(name, value, type, size, label , span) %}
+
+	<div class="input-field col {{ span | default('s12') }}">
+		<input placeholder="{{ label | default(name) | title }}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate"/>
+		<label for="first_name">{{ label | default(name) | title }}</label>
+	</div>
+
+{% endmacro %}
+
+{% macro button(name, label) %}
+
+	<button class="btn waves-effect waves-light" type="submit" name="{{ name }}">{{ label | default(name) | title }}
+		<i class="material-icons right">send</i>
+	</button>
+
+{% endmacro %}
