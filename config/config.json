@@ -1,0 +1,14 @@
+{
+	"name": "Website extension",
+	"databases": {
+		"main": {
+			"name": "sqldb",
+			"type": "mysql",
+			"host": "localhost",
+			"database": "website-framework",
+			"username": "root",
+			"password": "",
+			"default": true
+		}
+	}
+}

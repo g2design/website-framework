@@ -1,0 +1,49 @@
+{% extends "layouts/admin.twig" %}
+
+{% block content %}
+
+	<div class="row">
+		<ul class="side-nav fixed">
+			{% for item in backend_sidebar() %}
+				{% if item.sub %}
+					<li class="no-padding">
+
+
+						<ul class="collapsible collapsible-accordion">
+							<li>
+								<a class="collapsible-header waves-effect waves-teal">{{ item.label }}</a>
+								<div class="collapsible-body no-padding">
+									<ul>
+										<li>
+											<a href="{{ item.route }}">{{ item.label }}</a>
+										</li>
+										{% for sub in item.sub %}
+											<li>
+												<a href="{{ sub.route }}">{{ sub.label }}</a>
+											</li>
+										{% endfor %}
+									</ul>
+								</div>
+							</li>
+
+
+						</ul>
+
+					</li>
+				{% else %}
+					<li class="">
+						<a class="collapsible-header" href="{{ item.route }}">{{ item.label }}</a>
+					</li>
+				{% endif %}
+
+			{% endfor %}
+		</ul>
+
+		<div class="col s10 offset-s2">
+			{% block dashboard_content %}
+
+			{% endblock %}
+		</div>
+	</div>
+
+{% endblock %}

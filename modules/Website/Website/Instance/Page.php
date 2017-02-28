@@ -1,7 +1,7 @@
 <?php
 namespace Website\Instance;
 
-class Page {
+class Page extends \G2Design\G2App\Controller {
 	var $file = null;
 	private $template_string;
 	private $php;
@@ -108,6 +108,12 @@ class Page {
 		$this->after();
 		
 		return $this->output;
+	}
+	
+	function &comp($name) {
+		if(isset($this->website->globals['comp'][$name])) {
+			return $this->website->globals['comp'][$name];
+		}
 	}
 	
 

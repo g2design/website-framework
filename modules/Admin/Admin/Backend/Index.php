@@ -1,6 +1,6 @@
 <?php
 
-namespace EntityCreator\Backend;
+namespace Admin\Backend;
 
 class Index extends \G2Design\G2App\Controller {
 	
@@ -18,7 +18,16 @@ class Index extends \G2Design\G2App\Controller {
 	
 	
 	function getLogin() { // Login Form
-		\G2Design\G2App\View::getInstance('pages/login')->render();
+		$um = new \Admin\Model\User();
+		
+		if(($result = $um->login()) === true) {
+			//Get current admin
+			
+			//Redirect to this admins roles prefered location
+			
+		}
+			
+		echo $result;
 	}
 	
 	function getDashboard() { // Dashboard display

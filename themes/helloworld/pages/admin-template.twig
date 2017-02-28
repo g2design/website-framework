@@ -1,0 +1,25 @@
+route = "admin-template"
+
+==
+$page->before('\\Admin\\Filter\\Admin::login_redirect');
+
+==
+{% extends "layouts/dashboard.twig" %}
+
+{% import "macros/forms.twig" as form %}
+{% block dashboard_content %}
+
+
+	<div class="row">
+		<div class="col s12">
+			<div class="row">
+				{{ backend_content() }}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
