@@ -1,0 +1,14 @@
+{% import "macros/forms.twig" as form %}
+
+<form action="" method="POST">
+	<div class="row">
+		{{ form.input('name' , '', 'text',12, 'Full Name' , 's12') }}
+		{{ form.input('email' , '', 'text',12, 'Username' , 's12') }}
+		{{ form.input('password','','password') }}
+	</div>
+	<div class="row">
+		{{ form.button('save', 'Save') }}
+	</div>
+
+</form>
+

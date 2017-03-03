@@ -1,0 +1,14 @@
+.wine-form
+	form(method="post")
+		.form-group.backend
+			.row
+				label Group Name
+				input.form-control(name="name", type="text")
+			.row
+				h4 Settings
+			.row
+				input.group(type="checkbox",name="default", id="default-group")
+				label(for="default-group").group.form-control
+					| Default Group
+			br
+			button.btn-large.inline(type="submit") save

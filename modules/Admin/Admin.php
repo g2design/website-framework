@@ -28,7 +28,7 @@ class Admin extends G2Design\ClassStructs\Module {
 				return self::$template->render();
 			}
 			
-			return 'Filtered '.$response;
+			return $response;
 		});
 	}
 	
@@ -37,7 +37,7 @@ class Admin extends G2Design\ClassStructs\Module {
 		G2Design\G2App::getInstance()->router->get('admin/logout', function() {
 			$um = new Admin\Model\User();
 			$um->logout();
-			$redirect_to = isset($_GET['r_to']) ? urldecode($_GET['r_to']) : G2Design\Utils\Functions::get_current_site_url()  .'admin/login';
+			$redirect_to = isset($_GET['r_to']) ? urldecode($_GET['r_to']) : G2Design\Utils\Functions::get_current_site_url() . \Admin::$slug . '/login';
 			
 			header('Location: '.$redirect_to);
 		});
@@ -45,14 +45,26 @@ class Admin extends G2Design\ClassStructs\Module {
 		
 		
 		// Create a helloworld example of a section
-		$this->add_section(new Admin\Section\Helloworld());
-		$this->add_section(new Admin\Section\Users());
+//		$this->logger()->addAlert('Test');
+		if(Admin\Permission::has_permission('Access Users')) {
+			self::add_section(Admin\Section\Navigation::getInstance('Users', 'user', "\Admin\Backend\Users")
+					->add_link('Add User', 'user/edit/new')
+					->add_controller('Permissions', 'permissions', "\Admin\Backend\Permissions")
+					->add_controller('User Groups', 'groups', "\Admin\Backend\Groups"));
+			
+		}
 		
+		
+		
+		foreach(self::$sections as $section) {
+			$section->init($this);
+		}
 	}
 	
-	public function add_section(\Admin\Section $section) {
+	
+	public static function add_section(\Admin\Section $section) {
 		self::$sections[] = $section;
-		$section->init($this);
+		
 	}
 	
 	final function controller($route, $controller) {

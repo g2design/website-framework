@@ -4,4 +4,30 @@
 .full-w {
   width: 100%; }
 
+main {
+  padding-left: 300px; }
+
+.page-title {
+  font-size: 20px; }
+
+.card-panel {
+  position: relative; }
+  .card-panel .card-image {
+    height: 100px;
+    overflow: hidden;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; }
+    .card-panel .card-image .card-title {
+      color: #fff;
+      max-width: 100%;
+      padding: 24px;
+      position: absolute;
+      bottom: 0;
+      left: 0; }
+    .card-panel .card-image + .card-content {
+      margin-top: 100px; }
+
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,12 @@
+<h5>Daily Trading Hours</h5>
+{% if trading %}
+
+	<ul>
+		{% for hour in trading %}
+			<li>{{ hour.day | title }}: From {{ hour.open }} &mdash; {{ hour.close }}</li>
+			{% endfor %}
+	</ul>
+
+{% else %}
+	<p>No Trading Hours Currently Saved</p>
+{% endif %}

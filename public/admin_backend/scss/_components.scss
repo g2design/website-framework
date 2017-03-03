@@ -1,0 +1,28 @@
+.card-panel {
+	position: relative;
+
+	.card-image {
+		height: 100px;
+		overflow: hidden;
+		background-color: black;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+
+		.card-title {
+			color: #fff;
+			max-width: 100%;
+			padding: 24px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		& + .card-content {
+			margin-top: 100px;
+		}
+	}
+
+	
+}

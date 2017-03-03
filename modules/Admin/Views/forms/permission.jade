@@ -1,0 +1,16 @@
+form(method="POST")
+	.row
+		.col.s8.offset-s2
+			for group in groups
+				span=group.name
+				.switch
+					label
+						| Off
+						input.group(type="checkbox", name=group.id, id=group.id + "-group")
+						span.lever
+						| On
+			
+				
+	.row
+		.col.s8.offset-s2
+			button.btn-large.inline(type="submit", name="Submit", value="Test") Save

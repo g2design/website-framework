@@ -1,0 +1,9 @@
+form(method="POST")
+	.row
+		.col.s8.offset-s2
+			for user in users
+				input.group(type="checkbox", name=user.id, id=user.id)
+				label.group.form-control(for=user.id)=user.name
+	.row
+		.col.s8.offset-s2
+			button.btn-large.inline(type="submit") Save

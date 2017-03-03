@@ -3,6 +3,7 @@
 namespace Admin\Model;
 
 use G2Design\Database;
+use G2Design\G2App\View\Pug as PugView;
 /**
  * Description of User
  *
@@ -24,7 +25,7 @@ class User extends \G2Design\G2App\Model {
 				
 				$group = Database::findOrCreate('group',['name' => 'Super Admin', 'default' => true]);
 				
-				$group->sharedAdmin = [$account];
+				$group->sharedUser = [$account];
 				
 				Database::store($group);
 			} else {
@@ -79,16 +80,122 @@ class User extends \G2Design\G2App\Model {
 	function get_current_user() {
 		
 		
-		if (( $id = $this->session()->get('user_k') ) !== null) {
-
-			return Database::load('user_k', $id);
+		if (( $id = $this->session()->get('user_k') ) !== null ) {
+			
+			
+			
+			$user =  Database::load('user', $id);
+			
+			if($user->getID()) return $user;
 		}
 		
 		return false;
 	}
 	
+	
+	function form(\RedBeanPHP\OODBBean $user) {
+
+		$view = new \G2Design\G2App\View('forms/user');
+		$form = new \Form\Form($view->render(true));
+		if (!$form->is_posted()) {
+			$data = $user->export();
+			unset($data['password']);
+			$form->set_data($data);
+		}
+
+		if ($form->is_posted() && $form->validate()) {
+			$data = $form->data();
+			if (!empty($data['password'])) {
+				$data['password'] = $this->hash_password($data['password']);
+			} else {
+				unset($data['password']);
+			}
+
+			foreach ($data as $field => $value) {
+				if($field == 'email') {
+					$value = strtolower($value);
+				}
+				
+				$user->{$field} = $value;
+			}
+
+			Database::store($user);
+			return true;
+		}
+
+		return $form->parse();
+	}
+	
+	
 	function logout() {
 		$this->session()->clear();
+	}
+	
+	function get_groups() {
+		return Database::findAll('group');
+	}
+	
+	function get_users() {
+		return Database::findAll('user');
+	}
+	
+	function group_users($group) {
+		$view = new PugView("forms/group-users");
+		$view->users = $this->get_users();
+		$view->group = $group;
+
+		$form = new \Form\Form($view->render(true));
+
+		if (!$form->is_posted()) {
+			$data = [];
+			foreach ($group->sharedUser as $admin) {
+				$data[$admin->id] = "on";
+			}
+
+			$form->set_data($data);
+		}
+
+		if ($form->is_posted()) {
+
+			$admins = [];
+			foreach ($form->data() as $key => $value) {
+				if($value) {
+					$user = Database::load('user', $key);
+					$admins[] = $user;
+				}
+				
+			}
+			$group->sharedUser = $admins;
+
+			Database::store($group);
+			
+			return true;
+		}
+
+		return $form->parse();
+	}
+	
+	function form_group($group) {
+		$view = new PugView('forms/group');
+		$form = new \Form\Form($view->render(true));
+		if (!$form->is_posted()) {
+			$data = $group->export();
+			unset($data['password']);
+			$form->set_data($data);
+		}
+
+		if ($form->is_posted() && $form->validate()) {
+			$data = $form->data();
+
+			foreach ($data as $field => $value) {
+				$group->{$field} = $value;
+			}
+
+			Database::store($group);
+			return true;
+		}
+
+		return $form->parse();
 	}
 	
 }

@@ -1,0 +1,22 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/g2design/website-framework",
+  "authors": [
+    "Stephan Wessels <stephan@g2design.co.za>"
+  ],
+  "description": "required assets",
+  "main": "bow",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "materialize-clockpicker": "^0.1.1"
+  }
+}
