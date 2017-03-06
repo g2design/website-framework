@@ -35,33 +35,17 @@ class Sites extends G2Design\ClassStructs\Module {
 
 		G2Design\G2App::getInstance()->router->controller('api', "\Sites\Controller\Api");
 
-		$site_id = $this->session()->get('current_site');
-		if ($site_id) {
-			$site = G2Design\Database::load('site', $site_id);
-//			var_dump($site);exit;
-			$site_slug =  'sites/manage/' . G2Design\Utils\Functions::slugify($site->name);
-			$section = Admin\Section\Navigation::getInstance("Manage $site->name", $site_slug, new Sites\Backend\ManageSite($site, \Admin::$slug."/".$site_slug));
-			
-			//Write code to add sections that can be modified for this site
-			
-			
-			
-			/**
-			 * @todo Creation of section class that allows addition of different sections. Can extend the Navigation section from admin
-			 * Eg a controller for news, events, Store Directory etc.
-			 * 
-			 */
-			
-			
-			$admin = G2Design\G2App::__get_module('Admin');
-//			var_dump($admin);exit;
-			$section->init($admin);
-			Admin::add_section($section);
+		$this->section_init();
+
+		//register api resource controllers if api is verified
+
+		if (self::auth()) {
+			$this->api_controllers();
 		}
 	}
 
 	static function is_auth() {
-		if (!\Sites::$auth_server->verifyResourceRequest(\OAuth2\Request::createFromGlobals())) {
+		if (!self::auth()) {
 			\Sites::$auth_server->getResponse()->send();
 			die;
 		}
@@ -69,8 +53,16 @@ class Sites extends G2Design\ClassStructs\Module {
 		return true;
 	}
 
+	static function auth() {
+		if (!\Sites::$auth_server->verifyResourceRequest(\OAuth2\Request::createFromGlobals())) {
+			return false;
+		}
+
+		return true;
+	}
+
 	static function authed_site() {
-		if (self::is_auth()) {
+		if (self::auth()) {
 			//Connect this token to site
 			$token_data = self::$auth_server->getAccessTokenData(\OAuth2\Request::createFromGlobals());
 
@@ -81,6 +73,40 @@ class Sites extends G2Design\ClassStructs\Module {
 		}
 
 		return false;
+	}
+
+	function api_controllers() {
+
+		$site = $site = self::authed_site();
+		G2Design\G2App::getInstance()->router->filter('json_response', "\Sites\Filter\RouteFilter::afterJson");
+		G2Design\G2App::getInstance()->router->group(['after' => 'json_response'], function($router) use ($site) {
+			/* @var $router Phroute\Phroute\RouteCollector */
+			$router->controller('tradinghours', Sites\Api\TradingHours::getInstance($site));
+		});
+	}
+
+	function section_init() {
+		$site_id = $this->session()->get('current_site');
+		if ($site_id) {
+			$site = G2Design\Database::load('site', $site_id);
+//			var_dump($site);exit;
+			$site_slug = 'sites/manage/' . G2Design\Utils\Functions::slugify($site->name);
+			$section = Admin\Section\Navigation::getInstance("Manage $site->name", $site_slug, new Sites\Backend\ManageSite($site, \Admin::$slug . "/" . $site_slug));
+
+			//Write code to add sections that can be modified for this site
+
+
+
+			/**
+			 * @todo Creation of section class that allows addition of different sections. Can extend the Navigation section from admin
+			 * Eg a controller for news, events, Store Directory etc.
+			 * 
+			 */
+			$admin = G2Design\G2App::__get_module('Admin');
+//			var_dump($admin);exit;
+			$section->init($admin);
+			Admin::add_section($section);
+		}
 	}
 
 }

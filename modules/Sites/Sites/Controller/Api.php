@@ -36,10 +36,13 @@ class Api extends \G2Design\G2App\Controller {
 	}
 	
 	function getSite() {
-		$site = \Sites::authed_site();
-		
-		echo json_encode($site->export());
-		die();
+		if(\Sites::is_auth()) {
+			$site = \Sites::authed_site();
+
+			echo json_encode($site->export());
+			die();
+			
+		}
 	}
 	
 	
