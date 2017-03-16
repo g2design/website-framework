@@ -1,0 +1,20 @@
+{% import "macros/forms.twig" as form %}
+
+<form action="" method="POST" enctype="multipart/form-data" novalidate >
+
+	<div class="row">{{ form.input('title',true) }}</div>
+	<div class="row">
+		<div class="input-field col s12">
+			<div class="chips" data-target='#Tags'>
+			</div>
+			<label for="Tags">Tags</label>
+		</div>
+		<input id="Tags" type="text" name="tags" class="hide">
+
+	</div>
+	<div class="row">{{ form.text('post',true) }}</div>
+	<div class="row">{{ form.file('featuredimage', 'Featured Image','image/jpeg;image/png;image/gif') }}</div>
+
+	<div class="row">{{ form.button('Publish' ) }}</div>
+</form>
+

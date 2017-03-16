@@ -13,10 +13,8 @@ namespace Sites\Backend;
  *
  * @author User
  */
-class ManageSite extends \G2Design\G2App\Controller {
-	var $site = null;
+class ManageSite extends SiteControllerAbstract {
 	var $dashboard_items = [];
-	private $slug;
 
 	/**
 	 * Function that will add a panel item to dashboard
@@ -26,18 +24,11 @@ class ManageSite extends \G2Design\G2App\Controller {
 		$this->dashboard_items[] = ['title' => $title, 'html', 'actions' => $actions];
 	}
 	
-	function __construct(\RedBeanPHP\OODBBean $site, $slug) {
-		if($site->getMeta('type') != 'site' && !$site->getID()) {
-			throw new Exception("Must be loaded instance of site");
-		}
-		$this->slug  = $slug;
-		$this->site = $site;
-	}
-	
 	function getIndex() {
 		$trading = new \Sites\Details\TradingHours($this->site);
 		return \Admin\Page::getInstance("Manage Site: {$this->site->name}")
 				->add_dashitem('Trading Hours',$trading->html(), [['label' => 'Update', 'url' => $this->slug.'/trading-hours']])
+				
 				->render();
 	}
 	
@@ -46,18 +37,34 @@ class ManageSite extends \G2Design\G2App\Controller {
 	 */
 	function anyTradingHours() {
 		
-		$trm = new \Sites\Details\TradingHours($this->site);
+		$table = new \G2Design\DataTable();
+		$table->set_data($this->site->ownTradinghour, 10);
 		
+		$table->add_field('day');
+		$trm =  new \Sites\Details\TradingHours($this->site);
+		$site = $this->site;
+		$table->render_field_as('day', function($field,$value,$data) use($trm, $site){
+			// Create special key for this entry
+			$key =  md5($data->id.$site->id);
+			$form = $trm->form($data, $key);
+			
+			return $form;
+			
+		});
 		
-		if(($result = $trm->form()) === true) {
-			$this->redirect($this->slug);
+		//Add a normal add for also
+		$tradinghour = \G2Design\Database::dispense('tradinghour');
+		$tradinghour->site = $this->site;
+		$form = $trm->form($tradinghour);
+		
+		if($form === true) {
+			$this->redirect($this->slug.'/trading-hours');
 			return;
 		}
 		
-		
-		
 		return \Admin\Page::getInstance("Trading Hours: {$this->site->name}")
-				->add_content($result,'Edit Trading Hours')
+				->add_content($table->render())
+				->add_content($form,'Add another tradinghour entry')
 				->render();
 	}
 	

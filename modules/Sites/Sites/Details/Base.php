@@ -15,10 +15,10 @@ namespace Sites\Details;
  */
 class Base extends \G2Design\G2App\Base {
 
-	protected $site;
+	protected $entity;
 
-	public function __construct(\RedBeanPHP\OODBBean $site) {
-		$this->site = $site;
+	public function __construct(\RedBeanPHP\OODBBean $entity) {
+		$this->entity = $entity;
 	}
 	//put your code here
 }

@@ -1,7 +1,16 @@
-{% macro input(name, value, type, size, label , span) %}
+{% macro input(name, required, value, type, size, label , span) %}
 
 	<div class="input-field col {{ span | default('s12') }}">
-		<input id="input-{{ name | lower | replace({' ': '-' })}}" placeholder="{{ label | default(name) | title }}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate"/>
+		<input id="input-{{ name | lower | replace({' ': '-' })}}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate" {% if required %} required {% endif %}/>
+		<label for="input-{{ name | lower | replace({' ': '-' })}}">{{ label | default(name) | title }}</label>
+	</div>
+
+{% endmacro %}
+
+{% macro input_inline(name, required, value, type, size, label , span) %}
+
+	<div class="input-field inline col {{ span | default('s12') }}">
+		<input id="input-{{ name | lower | replace({' ': '-' })}}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate" {% if required %} required {% endif %}/>
 		<label for="input-{{ name | lower | replace({' ': '-' })}}">{{ label | default(name) | title }}</label>
 	</div>
 
@@ -15,10 +24,22 @@
 
 {% endmacro %}
 
-{% macro text(name, label, size) %}
+{% macro text(name, required, label, size) %}
 	<div class="input-field col {{ span | default('s12') }}">
-		<textarea name="{{ name }}" class="materialize-textarea">
+		<textarea name="{{ name }}" class="materialize-textarea" {% if required %} required {% endif %}>
 		</textarea>
 		<label for="input-{{ name | lower | replace({' ': '-' })}}">{{ label | default(name) | title }}</label>
+	</div>
+{% endmacro %}
+
+{% macro file(name, label, filetype) %}
+	<div class="file-field input-field">
+		<div class="btn">
+			<span>{{ label | default(name) | title }}</span>
+			<input type="file"  name="{{ name }}" {% if filetype %}filetype="{{ filetype }}"{% endif %}>
+		</div>
+		<div class="file-path-wrapper">
+			<input class="file-path validate" type="text">
+		</div>
 	</div>
 {% endmacro %}

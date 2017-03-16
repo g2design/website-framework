@@ -14,6 +14,10 @@ namespace Sites\Api;
  * @author User
  */
 class ApiController {
+	/**
+	 *
+	 * @var \RedBeanPHP\OODBBean 
+	 */
 	var $site = null;
 	
 	public function __construct(\RedBeanPHP\OODBBean $site) {

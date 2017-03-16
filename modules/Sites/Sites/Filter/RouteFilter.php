@@ -20,10 +20,10 @@ class RouteFilter {
 		header('Content-Type: application/json');
 
 		// JSON encode response
-		if (is_object($response) || is_array($response))
+//		if (is_object($response) || is_array($response))
 			return json_encode($response);
-		else
-			return json_encode(['response' => $response]);
+//		else
+//			return json_encode(['response' => $response]);
 	}
 
 }

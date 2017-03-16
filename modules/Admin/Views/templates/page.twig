@@ -47,6 +47,9 @@
 
 						{% if body.title %}
 							<div class="card-image">
+								{%if body.image %}
+								<img src="{{body.image}}" alt="Body Image">
+								{% endif %}
 								<div class="card-title">{{ body.title }}</div>
 							</div>
 						{% endif %}

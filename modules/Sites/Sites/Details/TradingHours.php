@@ -31,34 +31,27 @@ class TradingHours extends Base {
 						->render(true);
 	}
 
-	function form() {
-		$form = new \Form\Form(\G2Design\G2App\View::getInstance('forms/trading-hours')->render(true));
+	function form(\RedBeanPHP\OODBBean $tradinghour, $key = false) {
+		if($tradinghour->getID()) {
+			$unid = md5('trad-'.$tradinghour->id);
+		} else {
+			$unid = md5('trad-');
+		}
+		
+		$form = new \Form\Form(\G2Design\G2App\View::getInstance('forms/trading-hours')
+				->set('unid', $unid)
+				->render(true), $key);
 		
 		if(!$form->is_posted()) {
-			//Convert trading hours to array to set data
-			$times = [];
-			foreach($this->tradinghours as $trading) {
-				$times[$trading->day] = ['open' => $trading->open ? $trading->open : '', 'close' => $trading->close ? $trading->close : ''];
-			}
-			$form->set_data($times);
+			$form->set_data($tradinghour->export());
 		}
 		
 		if($form->is_posted() && $form->validate()) {
 			
-			foreach($form->data() as $day => $times) {
-				
-				//Find the trading hour that corresponds to this $day
-				$trading = Database::findOrCreate('tradinghour',['site_id' => $this->site->id, 'day' => $day]);
-				if(empty($times['open'])) {
-					
-					Database::trash($trading);
-					continue;
-				}
-				$trading->open = $times['open'];
-				$trading->close = $times['close'];
-				
-				Database::store($trading);
+			foreach($form->data() as $field => $value) {
+				$tradinghour->{$field} = $value;
 			}
+			Database::store($tradinghour);
 		}
 		
 		return $form->parse();

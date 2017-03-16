@@ -1,0 +1,16 @@
+{% import "macros/forms.twig" as form %}
+
+<form action="" method="POST">
+	<div class="row">
+		{{form.input('name')}}
+	</div>
+	
+	<div class="row">
+		{{ form.file('categoryimage') }}
+	</div>
+	
+	<div class="row">
+		{{form.button('save')}}
+	</div>
+	
+</form>

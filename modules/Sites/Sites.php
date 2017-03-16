@@ -13,7 +13,7 @@ class Sites extends G2Design\ClassStructs\Module {
 	}
 
 	public function init() {
-
+//		$this->logger()->addAlert('test');
 		$db = G2Design\Config::get()->databases->main;
 		$dsn = "mysql:dbname={$db->database};host={$db->host}";
 		$username = $db->username;
@@ -80,8 +80,11 @@ class Sites extends G2Design\ClassStructs\Module {
 		$site = $site = self::authed_site();
 		G2Design\G2App::getInstance()->router->filter('json_response', "\Sites\Filter\RouteFilter::afterJson");
 		G2Design\G2App::getInstance()->router->group(['after' => 'json_response'], function($router) use ($site) {
-			/* @var $router Phroute\Phroute\RouteCollector */
-			$router->controller('tradinghours', Sites\Api\TradingHours::getInstance($site));
+			/* @var $router \Phroute\Phroute\RouteCollector */
+			$router->controller('api/resources/tradinghours', Sites\Api\TradingHours::getInstance($site));
+			$router->controller('api/resources/posts', Sites\Api\Posts::getInstance($site));
+			$router->controller('api/settings', Sites\Api\Settings::getInstance($site));
+			$router->controller('api/directory', Sites\Api\Directory::getInstance($site));
 		});
 	}
 
@@ -89,23 +92,42 @@ class Sites extends G2Design\ClassStructs\Module {
 		$site_id = $this->session()->get('current_site');
 		if ($site_id) {
 			$site = G2Design\Database::load('site', $site_id);
+			$admin = G2Design\G2App::__get_module('Admin');
 //			var_dump($site);exit;
 			$site_slug = 'sites/manage/' . G2Design\Utils\Functions::slugify($site->name);
-			$section = Admin\Section\Navigation::getInstance("Manage $site->name", $site_slug, new Sites\Backend\ManageSite($site, \Admin::$slug . "/" . $site_slug));
+			$sections = [];
+			$sections[] = Admin\Section\Navigation::getInstance("Manage $site->name", $site_slug, new Sites\Backend\ManageSite($site, \Admin::$slug . "/" . $site_slug))
+					->add_controller('News, Events and Competitions', $site_slug.'/posts', new Sites\Backend\Posts($site,\Admin::$slug . "/" . $site_slug . "/posts"))
+					->add_controller('Store Directory', $site_slug.'/store-directory', new Sites\Backend\StoreDirectory($site,\Admin::$slug . "/" . $site_slug . "/store-directory"))
+					->add_controller('Settings', $site_slug.'/settings', new Sites\Backend\Settings($site,\Admin::$slug . "/" . $site_slug . "/settings"));
+
+			
+			//Register all stores controller that is on this site
+			foreach($site->ownStore as $store) {
+				$shortend = $site_slug . "/store-directory/".G2Design\Utils\Functions::slugify($store->name);
+				$store_slug = \Admin::$slug . "/" . $shortend;
+				if(!isset($store->admin)) {
+					$store->admin = $store_slug;
+					G2Design\Database::store($store);
+				}
+				$admin->controller($shortend, new Sites\Backend\Store\StoreManager($site, $store, $store_slug));
+			}
+			
 
 			//Write code to add sections that can be modified for this site
-
-
 
 			/**
 			 * @todo Creation of section class that allows addition of different sections. Can extend the Navigation section from admin
 			 * Eg a controller for news, events, Store Directory etc.
 			 * 
 			 */
-			$admin = G2Design\G2App::__get_module('Admin');
+			
 //			var_dump($admin);exit;
-			$section->init($admin);
-			Admin::add_section($section);
+			foreach($sections as $section) {
+				$section->init($admin);
+				Admin::add_section($section);
+			}
+			
 		}
 	}
 

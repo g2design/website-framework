@@ -38,8 +38,8 @@ class Page extends \G2Design\G2App\Base {
 		return $this;
 	}
 	
-	function &add_dashitem($title, $html, $actions = []) {
-		$this->vars['dashitems'][] = ['content' => $html, 'title' => $title, 'actions' => $actions];
+	function &add_dashitem($title, $html, $actions = [], $image = false) {
+		$this->vars['dashitems'][] = ['content' => $html, 'title' => $title, 'actions' => $actions, 'image' => $image];
 		return $this;
 	}
 

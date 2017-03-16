@@ -16,6 +16,7 @@ class Api extends \G2Design\G2App\Controller {
 	var $server = null;
 	
 	public function __construct() {
+		
 		$this->server = \Sites::$auth_server;
 	}
 	
