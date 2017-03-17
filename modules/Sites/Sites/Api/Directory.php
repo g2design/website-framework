@@ -64,6 +64,7 @@ class Directory extends ApiController {
 				//Convert Assests to properties
 				$storeitem = [
 					'name' => $store->name,
+					'tel' => $store->tel,
 					'description' => $store->description,
 					'trading_hours' => $store->ownTradinghour
 				];
