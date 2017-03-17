@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61471cde3e8d7507a1d3f8373b8c729a",
+    "hash": "5d1c32e9dad106d2f6eecdb2df52d5af",
     "content-hash": "1e5b0f8a56e61b8140b9653b6db69584",
     "packages": [
         {
@@ -286,12 +286,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/g2design/g2app.git",
-                "reference": "45371e5585f0042e56c733ee2a4fb14715db2d95"
+                "reference": "4bf63541962da7ed3e3faa07542c077be555e463"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/g2design/g2app/zipball/45371e5585f0042e56c733ee2a4fb14715db2d95",
-                "reference": "45371e5585f0042e56c733ee2a4fb14715db2d95",
+                "url": "https://api.github.com/repos/g2design/g2app/zipball/4bf63541962da7ed3e3faa07542c077be555e463",
+                "reference": "4bf63541962da7ed3e3faa07542c077be555e463",
                 "shasum": ""
             },
             "require": {
@@ -328,7 +328,7 @@
                 }
             ],
             "description": "A small PHP framework",
-            "time": "2017-03-06 10:08:03"
+            "time": "2017-03-16 06:54:18"
         },
         {
             "name": "g2design/website-module",
@@ -336,12 +336,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/g2design/website-module.git",
-                "reference": "696226225ca0df972db9e8b2d2f47d1561bf40b4"
+                "reference": "c5c448f89518b68d29247eecf484e905f80481c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/g2design/website-module/zipball/696226225ca0df972db9e8b2d2f47d1561bf40b4",
-                "reference": "696226225ca0df972db9e8b2d2f47d1561bf40b4",
+                "url": "https://api.github.com/repos/g2design/website-module/zipball/c5c448f89518b68d29247eecf484e905f80481c1",
+                "reference": "c5c448f89518b68d29247eecf484e905f80481c1",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +355,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module for quickly deploying a website",
-            "time": "2017-03-06 08:05:19"
+            "time": "2017-03-10 08:18:22"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -876,12 +876,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c82afaa30356d20e08cc74fec7ab9b6ecd38288a"
+                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c82afaa30356d20e08cc74fec7ab9b6ecd38288a",
-                "reference": "c82afaa30356d20e08cc74fec7ab9b6ecd38288a",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
+                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
                 "shasum": ""
             },
             "require": {
@@ -946,7 +946,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-01-11 16:17:39"
+            "time": "2017-03-13 07:08:03"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1045,16 +1045,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.9",
+            "version": "v2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b"
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/6968531206671f94377b01dc7888d5d1b858a01b",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
                 "shasum": ""
             },
             "require": {
@@ -1089,7 +1089,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-03 20:43:42"
+            "time": "2017-03-13 16:27:32"
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -1942,12 +1942,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "4b2e9ef2a7651918890de0e1b93cfddd2e63c867"
+                "reference": "c5ba65ca44264a640d23e8d1644b668949394fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4b2e9ef2a7651918890de0e1b93cfddd2e63c867",
-                "reference": "4b2e9ef2a7651918890de0e1b93cfddd2e63c867",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c5ba65ca44264a640d23e8d1644b668949394fe8",
+                "reference": "c5ba65ca44264a640d23e8d1644b668949394fe8",
                 "shasum": ""
             },
             "require": {
@@ -1956,7 +1956,7 @@
             "require-dev": {
                 "psr/container": "^1.0",
                 "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~3.2"
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
@@ -1996,7 +1996,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-08 17:45:58"
+            "time": "2017-03-12 15:19:55"
         },
         {
             "name": "wa72/htmlpagedom",

@@ -1,75 +1,69 @@
 <nav class="top-nav">
-	<div class="container">
-		<div class="nav-wrapper">
-			<a class="page-title">{{ title }}</a>
+	<div class="nav-wrapper">
+		<a class="page-title">{{ title }}</a>
 
-			{% if buttons %}
+		{% if buttons %}
 
-				<ul class="right hide-on-med-and-down">
-					{% for button in buttons %}
-						<li>
-							<a href="{{ button.action }}" class="waves-effect waves-light btn">{{ button.label }}</a>
-						</li>
-					{% endfor %}
-				</ul>
+			<ul class="right hide-on-med-and-down">
+				{% for button in buttons %}
+					<li>
+						<a href="{{ button.action }}" class="btn">{{ button.label }}</a>
+					</li>
+				{% endfor %}
+			</ul>
 
-			{% endif %}
+		{% endif %}
 
-		</div>
 	</div>
 </nav>
-<div class="container">
 
-	{% if content %}
+{% if content %}
 
-		{% for body in content %}
-			<section class="card-panel hoverable">
+	{% for body in content %}
+		<section class="card-panel">
 
-				{% if body.title %}
-					<div class="card-image">
-						<div class="card-title">{{ body.title }}</div>
-					</div>
-				{% endif %}
-				<div class="card-content">
-					{{ body.content }}
+			{% if body.title %}
+				<div class="card-image">
+					<div class="card-title">{{ body.title }}</div>
 				</div>
-			</section>
-		{% endfor %}
+			{% endif %}
+			<div class="card-content">
+				{{ body.content }}
+			</div>
+		</section>
+	{% endfor %}
 
-	{% endif %}
+{% endif %}
 
-	{% if dashitems %}
+{% if dashitems %}
 
-		<div class="row">
-			{% for body in dashitems %}
-				<div class="col s4">
-					<section class="card-panel hoverable ">
+	<div class="row">
+		{% for body in dashitems %}
+			<div class="col s4">
+				<section class="card-panel ">
 
-						{% if body.title %}
-							<div class="card-image">
-								{%if body.image %}
+					{% if body.title %}
+						<div class="card-image">
+							{%if body.image %}
 								<img src="{{body.image}}" alt="Body Image">
-								{% endif %}
-								<div class="card-title">{{ body.title }}</div>
-							</div>
-						{% endif %}
-						<div class="card-content">
-							{{ body.content }}
+							{% endif %}
+							<div class="card-title">{{ body.title }}</div>
 						</div>
+					{% endif %}
+					<div class="card-content">
+						{{ body.content }}
+					</div>
 
-						{% if body.actions %}
-							<div class="card-actions">
-								{% for action in body.actions %}
-									<a href="{{ action.url }}">{{ action.label }}</a>
-								{% endfor %}
-							</div>
-						{% endif %}
-					</section>
-				</div>
-			{% endfor %}
-		</div>
+					{% if body.actions %}
+						<div class="card-actions">
+							{% for action in body.actions %}
+								<a class="btn" href="{{ action.url }}">{{ action.label }}</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</section>
+			</div>
+		{% endfor %}
+	</div>
 
-	{% endif %}
-
-</div>
-
+{% endif %}

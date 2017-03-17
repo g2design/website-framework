@@ -8,6 +8,9 @@
 
 namespace Sites\Backend;
 
+use G2Design\Database as Database,
+	\G2Design\Utils\Functions as Functions;
+
 /**
  * Description of StoreDirectory
  *
@@ -23,7 +26,12 @@ class StoreDirectory extends SiteControllerAbstract {
 		$table->add_field('name', 'Store');
 		$table->add_function('[admin]', 'Manage');
 
-
+		$site_id = $this->site->id;
+		if ($site_id) {
+			$site = Database::load('site', $site_id);
+			$site_slug = 'sites/manage/' . Functions::slugify($site->name);
+			$table->add_function('admin/' . $site_slug . '/store-directory/delete-store/[id]', 'Delete Store', ['confirm-delete']);
+		}
 
 		return \Admin\Page::getInstance('Store Directory')
 						->add_function('Categories', $this->slug . '/categories')
@@ -85,9 +93,9 @@ class StoreDirectory extends SiteControllerAbstract {
 			$image = $cat->file->url ? $cat->file->url : '';
 			$string .= "<div class='chip'>
 				<img src='{$image}' alt='Image'>
-				$cat->name
+				<span>$cat->name</span>
 					<a href='{$this->slug}/categories/$cat->id' >edit </a>
-					<a class='async-link' href='{$this->slug}/delete-category/{$cat->id}'><i class='close material-icons'>close</i></a>
+					<a class='async-link confirm-delete' href='{$this->slug}/delete-category/{$cat->id}'><i class='close material-icons'>close</i></a>
 			  </div>";
 		}
 
@@ -130,6 +138,17 @@ class StoreDirectory extends SiteControllerAbstract {
 		return \Admin\Page::getInstance('Category')
 						->add_content($result)
 						->render();
+	}
+
+	function getDeleteStore($id) {
+		$store = Database::load('store', $id);
+		Database::trash($store);
+		$site_id = $this->session()->get('current_site');
+		if ($site_id) {
+			$site = Database::load('site', $site_id);
+			$site_slug = 'sites/manage/' . Functions::slugify($site->name);
+		}
+		$this->redirect('admin/' . $site_slug . '/store-directory');
 	}
 
 }

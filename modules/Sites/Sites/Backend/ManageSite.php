@@ -64,7 +64,7 @@ class ManageSite extends SiteControllerAbstract {
 		
 		return \Admin\Page::getInstance("Trading Hours: {$this->site->name}")
 				->add_content($table->render())
-				->add_content($form,'Add another tradinghour entry')
+				->add_content($form,'Add another trading hour entry')
 				->render();
 	}
 	

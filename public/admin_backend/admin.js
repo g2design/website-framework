@@ -18,8 +18,6 @@ $(document).ready(function () {
 
 	});
 
-
-
 	$('.chips').each(function () {
 		var _this = $(this);
 		var target = $(this).data('target');
@@ -36,11 +34,11 @@ $(document).ready(function () {
 		} catch (Exception) {
 
 		}
-		
-		if($(this).attr('data-availabletags')) {
+
+		if ($(this).attr('data-availabletags')) {
 			data = JSON.parse($(this).attr('data-availabletags'));
 			console.log(data);
-			
+
 			options.autocompleteData = data;
 		}
 
@@ -50,5 +48,14 @@ $(document).ready(function () {
 			console.log('Apply to input field');
 			input.val(JSON.stringify($(this).material_chip('data')));
 		});
+	});
+
+//	Confirm Deletion of item
+	$('.confirm-delete').on('click', function () {
+		var result = confirm("Are you sure you want to delete this.");
+		if (result) {
+			return true;
+		} else
+			return false;
 	});
 });

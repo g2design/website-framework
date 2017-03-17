@@ -8,6 +8,8 @@
 
 namespace Sites\Backend;
 
+use G2Design\Database as Database;
+
 /**
  * Description of Posts
  *
@@ -26,6 +28,8 @@ class Posts extends SiteControllerAbstract {
 				->add_field('datemodified');
 		
 		$table->add_function($this->slug.'/post/[id]', 'edit');
+		
+		$table->add_function($this->slug . '/delete/[id]', 'Delete', ['confirm-delete']);
 
 		return \Admin\Page::getInstance('News, Events And Competitions')
 						->add_content($table->render())
@@ -51,5 +55,10 @@ class Posts extends SiteControllerAbstract {
 						->add_content($result)
 						->render();
 	}
-
+	
+	function anyDelete($id){
+		$post = Database::load('post', $id);
+		Database::trash($post);
+		$this->redirect($this->slug);
+	}
 }

@@ -9,7 +9,7 @@
 
 {% macro button(name, label) %}
 
-	<button class="btn waves-effect waves-light" type="submit" name="{{ name }}">{{ label | default(name) | title }}
+	<button class="btn" type="submit" name="{{ name }}">{{ label | default(name) | title }}
 		<i class="material-icons right">send</i>
 	</button>
 
