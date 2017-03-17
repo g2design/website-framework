@@ -13,6 +13,44 @@ body{
 	padding: 0px 20px;
 }
 
+.login{
+	background: #1e3d51;
+	.left-block{
+		background: rgba(29,137,207,0.8);
+		text-align: left;
+		padding: 30px;
+		img{
+			/*border-radius: 50%;*/
+			width: 50px;
+		}
+		h1{
+			color: white;
+			font-size: 22px;
+			font-weight: 700;
+			margin: 0;
+			display: inline;
+		}
+		p{
+			color: white;
+			font-size: 16px;
+			font-weight: 300;
+			margin-top: 5px;
+		}
+	}
+	.right-block{
+		background: white;
+		padding: 30px;
+		form{
+			input:-webkit-autofill {
+				-webkit-box-shadow: 0 0 0px 1000px white inset;
+				&:focus, &:active, &:hover{
+					-webkit-box-shadow: 0 0 0px 1000px white inset !important;
+				}
+			}
+		}
+	}
+}
+
 .side-nav{
 	background: #23272d;
 	width: 300px;
@@ -188,4 +226,14 @@ label.active{
 
 .page-title {
 	font-size: 20px;
+}
+
+.row-eq-height {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
 }

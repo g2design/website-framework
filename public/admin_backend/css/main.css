@@ -10,6 +10,34 @@ body {
 .top-nav {
   padding: 0px 20px; }
 
+.login {
+  background: #1e3d51; }
+  .login .left-block {
+    background: rgba(29, 137, 207, 0.8);
+    text-align: left;
+    padding: 30px; }
+    .login .left-block img {
+      /*border-radius: 50%;*/
+      width: 50px; }
+    .login .left-block h1 {
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      display: inline; }
+    .login .left-block p {
+      color: white;
+      font-size: 16px;
+      font-weight: 300;
+      margin-top: 5px; }
+  .login .right-block {
+    background: white;
+    padding: 30px; }
+    .login .right-block form input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset; }
+      .login .right-block form input:-webkit-autofill:focus, .login .right-block form input:-webkit-autofill:active, .login .right-block form input:-webkit-autofill:hover {
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important; }
+
 .side-nav {
   background: #23272d;
   width: 300px;
@@ -129,6 +157,15 @@ label.active {
 
 .page-title {
   font-size: 20px; }
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  @media screen and (max-width: 767px) {
+    .row-eq-height {
+      display: block; } }
 
 .card-panel {
   position: relative;
