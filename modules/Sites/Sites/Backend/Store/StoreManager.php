@@ -27,7 +27,7 @@ class StoreManager extends StoreControllerAbstract {
 		$trading = new \Sites\Details\TradingHours($this->store);
 		return \Admin\Page::getInstance("Manage Store: {$this->store->name}")
 						->add_dashitem('Trading Hours', $trading->html(), [['label' => 'Update', 'url' => $this->slug . '/trading-hours']], \Sites\Model\File::getAssetFile($this->store, 'picture')->url)
-						->add_dashitem('Manage Store Details', "<p>{$this->store->name} at {$this->site->name}</p> <a href='$this->slug/edit'>Update Details</a>",[],\Sites\Model\File::getAssetFile($this->store, 'picture')->url)
+						->add_dashitem('Manage Store Details', "<p>{$this->store->name} at {$this->site->name}</p> <a class='btn' href='$this->slug/edit'>Update Details</a>",[],\Sites\Model\File::getAssetFile($this->store, 'picture')->url)
 						->render();
 	}
 
@@ -77,7 +77,7 @@ class StoreManager extends StoreControllerAbstract {
 		return \Admin\Page::getInstance("Trading Hours: {$this->site->name}")
 						->add_content($table->render())
 						
-						->add_content($form, 'Add another tradinghour entry')
+						->add_content($form, 'Add another trading hour entry')
 						->render();
 	}
 

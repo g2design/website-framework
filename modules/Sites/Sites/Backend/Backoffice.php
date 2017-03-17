@@ -25,6 +25,7 @@ class Backoffice extends \G2Design\G2App\Controller {
 		
 		$table->add_function(\Admin::$slug.'/sites/edit/[id]', 'edit');
 		$table->add_function(\Admin::$slug.'/sites/start-management/[id]', 'Manage Site');
+		$table->add_function(\Admin::$slug.'/sites/delete-site/[id]', 'Delete', ['confirm-delete']);
 		
 		return \Admin\Page::getInstance('All Sites')
 				->add_content($table->render())
@@ -64,12 +65,17 @@ class Backoffice extends \G2Design\G2App\Controller {
 				return;
 			}
 			
-			
 			$this->session()->set('current_site', $site->id);
 			$this->redirect(\Admin::$slug.'/sites/manage/'. \G2Design\Utils\Functions::slugify($site->name));
 			return;
 		}
 		
+		$this->redirect(\Admin::$slug.'/sites');
+	}
+	
+	function getDeleteSite($id){
+		$site = Database::load('site', $id);
+		Database::trash($site);
 		$this->redirect(\Admin::$slug.'/sites');
 	}
 }

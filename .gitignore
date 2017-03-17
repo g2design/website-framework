@@ -50,3 +50,5 @@ Temporary Items
 /vendor/
 /public/bower_components/
 /public/media/images/
+/nbproject/private/
+*.scssc

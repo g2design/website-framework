@@ -1,7 +1,7 @@
 {% macro input(name, required, value, type, size, label , span) %}
 
 	<div class="input-field col {{ span | default('s12') }}">
-		<input id="input-{{ name | lower | replace({' ': '-' })}}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate" {% if required %} required {% endif %}/>
+		<input required id="input-{{ name | lower | replace({' ': '-' })}}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate" {% if required %} required {% endif %}/>
 		<label for="input-{{ name | lower | replace({' ': '-' })}}">{{ label | default(name) | title }}</label>
 	</div>
 
@@ -10,7 +10,7 @@
 {% macro input_inline(name, required, value, type, size, label , span) %}
 
 	<div class="input-field inline col {{ span | default('s12') }}">
-		<input id="input-{{ name | lower | replace({' ': '-' })}}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate" {% if required %} required {% endif %}/>
+		<input required id="input-{{ name | lower | replace({' ': '-' })}}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" class="validate" {% if required %} required {% endif %}/>
 		<label for="input-{{ name | lower | replace({' ': '-' })}}">{{ label | default(name) | title }}</label>
 	</div>
 
@@ -18,7 +18,7 @@
 
 {% macro button(name, label) %}
 
-	<button class="btn waves-effect waves-light" type="submit" name="{{ name }}">{{ label | default(name) | title }}
+	<button class="btn" type="submit" name="{{ name }}">{{ label | default(name) | title }}
 		<i class="material-icons right">send</i>
 	</button>
 
@@ -34,12 +34,12 @@
 
 {% macro file(name, label, filetype) %}
 	<div class="file-field input-field">
-		<div class="btn">
+		<div class="file-upload">
 			<span>{{ label | default(name) | title }}</span>
-			<input type="file"  name="{{ name }}" {% if filetype %}filetype="{{ filetype }}"{% endif %}>
+			<input required placeholder="upload" type="file"  name="{{ name }}" {% if filetype %}filetype="{{ filetype }}"{% endif %}>
 		</div>
 		<div class="file-path-wrapper">
-			<input class="file-path validate" type="text">
+			<input required class="file-path validate" type="text">
 		</div>
 	</div>
 {% endmacro %}

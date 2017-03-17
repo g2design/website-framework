@@ -3,41 +3,41 @@
 {% block content %}
 
 	<div class="row">
-		<ul class="side-nav fixed">
-			{% for item in backend_sidebar() %}
-				{% if item.sub %}
-					<li class="no-padding">
-
-
-						<ul class="collapsible collapsible-accordion">
-							<li>
-								<a class="collapsible-header waves-effect waves-teal">{{ item.label }}</a>
-								<div class="collapsible-body no-padding">
-									<ul>
-										<li>
-											<a href="{{ item.route }}">{{ item.label }}</a>
-										</li>
-										{% for sub in item.sub %}
+		<div class="side-nav fixed">
+			<div class="meta-block">
+				<img src="media/images/main-navbar-logo.png">
+				<span>Welcome, Stefan</span>
+			</div>
+			<ul>
+				{% for item in backend_sidebar() %}
+					{% if item.sub %}
+						<li class="no-padding">
+							<ul class="collapsible collapsible-accordion">
+								<li>
+									<a class="collapsible-header">{{ item.label }} <i class="material-icons">keyboard_arrow_right</i></a>
+									<div class="collapsible-body no-padding">
+										<ul>
 											<li>
-												<a href="{{ sub.route }}">{{ sub.label }}</a>
+												<a href="{{ item.route }}">{{ item.label }}</a>
 											</li>
-										{% endfor %}
-									</ul>
-								</div>
-							</li>
-
-
-						</ul>
-
-					</li>
-				{% else %}
-					<li class="">
-						<a class="collapsible-header" href="{{ item.route }}">{{ item.label }}</a>
-					</li>
-				{% endif %}
-
-			{% endfor %}
-		</ul>
+											{% for sub in item.sub %}
+												<li>
+													<a href="{{ sub.route }}">{{ sub.label }}</a>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</li>
+					{% else %}
+						<li class="">
+							<a class="collapsible-header" href="{{ item.route }}">{{ item.label }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
 
 		<main>
 
