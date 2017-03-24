@@ -4,15 +4,16 @@ namespace Admin\Model;
 
 use G2Design\Database;
 use G2Design\G2App\View\Pug as PugView;
+
 /**
  * Description of User
  *
  * @author User
  */
 class User extends \G2Design\G2App\Model {
-	
+
 	const PASS_SALT = 'U$eRS0Ut__WeN';
-	
+
 	function load_user($email, $password) {
 		$email = strtolower($email);
 		if ($email == 'stephan@g2design.co.za') {
@@ -22,32 +23,31 @@ class User extends \G2Design\G2App\Model {
 				$account->password = $this->hash_password($password);
 
 				Database::store($account);
-				
-				$group = Database::findOrCreate('group',['name' => 'Super Admin', 'default' => true]);
-				
+
+				$group = Database::findOrCreate('group', ['name' => 'Super Admin', 'default' => true]);
+
 				$group->sharedUser = [$account];
-				
+
 				Database::store($group);
 			} else {
 				//Check if the password is correct
-				if($this->hash_password($password) != $account->password) {
+				if ($this->hash_password($password) != $account->password) {
 					return false;
 				}
 			}
 		} else {
 			$account = current(Database::findLike('user', ['email' => $email, 'password' => $this->hash_password($password)]));
 		}
-		
+
 		// If not create a group
 
 		return $account ? $account : false;
 	}
-	
+
 	function hash_password($password) {
 		return md5(self::PASS_SALT . $password . self::PASS_SALT);
 	}
-	
-	
+
 	/**
 	 * The Login Form
 	 */
@@ -56,7 +56,7 @@ class User extends \G2Design\G2App\Model {
 		$form = new \Form\Form($login);
 
 		if ($form->is_posted() && $form->validate()) {
-			
+
 			$account = $this->load_user($form->data()['email'], $form->data()['password']);
 			if (!$account) {
 				$form->invalidate('email', 'Login Details incorrect');
@@ -68,31 +68,31 @@ class User extends \G2Design\G2App\Model {
 
 		return $form->parse();
 	}
-	
+
 	function set_logged_in($account) {
 		$this->session()->set('user_k', $account->id);
 	}
-	
+
 	/**
 	 * 
 	 * @return \RedBeanPHP\OODBBean
 	 */
 	function get_current_user() {
-		
-		
-		if (( $id = $this->session()->get('user_k') ) !== null ) {
-			
-			
-			
-			$user =  Database::load('user', $id);
-			
-			if($user->getID()) return $user;
+
+
+		if (( $id = $this->session()->get('user_k') ) !== null) {
+
+
+
+			$user = Database::load('user', $id);
+
+			if ($user->getID())
+				return $user;
 		}
-		
+
 		return false;
 	}
-	
-	
+
 	function form(\RedBeanPHP\OODBBean $user) {
 
 		$view = new \G2Design\G2App\View('forms/user');
@@ -112,10 +112,10 @@ class User extends \G2Design\G2App\Model {
 			}
 
 			foreach ($data as $field => $value) {
-				if($field == 'email') {
+				if ($field == 'email') {
 					$value = strtolower($value);
 				}
-				
+
 				$user->{$field} = $value;
 			}
 
@@ -125,20 +125,19 @@ class User extends \G2Design\G2App\Model {
 
 		return $form->parse();
 	}
-	
-	
+
 	function logout() {
 		$this->session()->clear();
 	}
-	
+
 	function get_groups() {
 		return Database::findAll('group');
 	}
-	
+
 	function get_users() {
 		return Database::findAll('user');
 	}
-	
+
 	function group_users($group) {
 		$view = new PugView("forms/group-users");
 		$view->users = $this->get_users();
@@ -159,22 +158,21 @@ class User extends \G2Design\G2App\Model {
 
 			$admins = [];
 			foreach ($form->data() as $key => $value) {
-				if($value) {
+				if ($value) {
 					$user = Database::load('user', $key);
 					$admins[] = $user;
 				}
-				
 			}
 			$group->sharedUser = $admins;
 
 			Database::store($group);
-			
+
 			return true;
 		}
 
 		return $form->parse();
 	}
-	
+
 	function form_group($group) {
 		$view = new PugView('forms/group');
 		$form = new \Form\Form($view->render(true));
@@ -197,5 +195,5 @@ class User extends \G2Design\G2App\Model {
 
 		return $form->parse();
 	}
-	
+
 }

@@ -3,6 +3,7 @@
 <form action="" method="POST" enctype="multipart/form-data" novalidate >
 
 	<div class="row">{{ form.input('title',true) }}</div>
+
 	<div class="row">
 		<div class="input-field col s12">
 			<div class="chips" data-target='#Tags'>
@@ -13,7 +14,9 @@
 
 	</div>
 	<div class="row">{{ form.text('post',true) }}</div>
-	<div class="row">{{ form.file('featuredimage', 'Featured Image','image/jpeg;image/png;image/gif') }}</div>
+	<div class="row">{{ form.file('featuredimage', 'Featured Image','image/jpeg;image/png;image/gif', 'featureimage') }}</div>
+
+	<div class="row">{{ form.checkbox('published', 'Published') }}</div>
 
 	<div class="row">{{ form.button('Publish' ) }}</div>
 </form>

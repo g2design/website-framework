@@ -25,7 +25,8 @@ class Posts extends SiteControllerAbstract {
 		$table->add_query('post', 'site_id = :site', ['site' => $this->site->id]);
 		$table->add_field('title')
 				->add_field('datecreated')
-				->add_field('datemodified');
+				->add_field('datemodified')
+				->add_field('status');
 		
 		$table->add_function($this->slug.'/post/[id]', 'edit');
 		
