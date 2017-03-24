@@ -46,8 +46,11 @@ class Content {
 	
 	static function getContent($entity, $slug) {
 		$entity_name = $entity->getMeta('type').'_id';
-		$result = Database::findOne('content', "$entity_name = :$entity_name AND slug = :slug", [ $entity_name => $entity->id, 'slug' => $slug ]);
-		
+		//$result = Database::findOne('content', "$entity_name = :$entity_name AND slug = :slug", [ $entity_name => $entity->id, 'slug' => $slug ]);
+		$result = Database::findOrCreate('content',[$entity_name => $entity->id, 'slug' => $slug]);
+		if(!$result->name) {
+			$result->name = $result->slug;
+		}
 		return ($result) ? $result->content : false;
 	}
 	

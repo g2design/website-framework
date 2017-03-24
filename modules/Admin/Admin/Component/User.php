@@ -17,6 +17,11 @@ class User extends \Website\Component{
 		$um = new \Admin\Model\User();
 		
 		if(($result = $um->login()) === true) {
+			if($um->get_current_user()->redirect) {
+				$this->redirect($um->get_current_user()->redirect);
+				exit;
+			}
+			
 			$this->redirect($redirect_to);
 			exit;
 		}
