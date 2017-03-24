@@ -27,6 +27,8 @@ class Store  extends \G2Design\G2App\Model {
 		
 		if( !$form->is_posted() ) {
 			$form->data(['name' => $store->name]);
+			$form->data(['tel' => $store->tel]);
+			$form->data(['description' => $store->description]);
 			
 			$cats = [];
 			

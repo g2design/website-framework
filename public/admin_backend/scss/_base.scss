@@ -128,9 +128,10 @@ main {
 	margin: 0 10px;
 	padding: 0 10px;
 	text-transform: capitalize;
-    font-size: 14px;
+    font-size: 13px;
 	height: 30px;
-	line-height: 30px;
+	line-height: 32px;
+	font-weight: 300;
 	&:hover, &:active, &:focus{
 		border-color: #207ebc #207ebc #13496e !important;
 		background: #248cd2 !important;
@@ -173,6 +174,10 @@ input[type=text], input[type=email], input[type=password]{
 input[type=email].valid{
 	border-bottom: 1px solid #2a94db !important;
 	box-shadow: 0 1px 0 0 #2a94db !important;
+}
+
+.checkbox{
+	margin-bottom: 50px;
 }
 
 label.active{
@@ -226,6 +231,10 @@ label.active{
 
 .page-title {
 	font-size: 20px;
+}
+
+.pagination li.active{
+    background-color: #2a94db !important;
 }
 
 .row-eq-height {

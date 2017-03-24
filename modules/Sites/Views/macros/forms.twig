@@ -36,10 +36,17 @@
 	<div class="file-field input-field">
 		<div class="file-upload">
 			<span>{{ label | default(name) | title }}</span>
-			<input required placeholder="upload" type="file"  name="{{ name }}" {% if filetype %}filetype="{{ filetype }}"{% endif %}>
+			<input placeholder="upload" type="file" name="{{ name }}" {% if filetype %}filetype="{{ filetype }}"{% endif %}>
 		</div>
 		<div class="file-path-wrapper">
 			<input required class="file-path validate" type="text">
 		</div>
+	</div>
+{% endmacro %}
+
+{% macro checkbox(name, label) %}
+	<div class="checkbox input-field col s12">		
+		<input name="{{ name }}" type="checkbox" id="{{ name }}" checked="checked" />
+		<label for="{{ name }}">{{ label }}</label>
 	</div>
 {% endmacro %}
