@@ -23,6 +23,14 @@ class Settings extends ApiController{
 			
 			if($setting) {
 				return $setting->value;
+			} else {
+				//Create this setting in database
+				$sitesetting = \G2Design\Database::dispense('sitesetting', 'site_id = :site AND name = :setting');
+				$sitesetting->site = $this->site;
+				$sitesetting->setting = $setting;
+				$sitesetting->value = false;
+				
+				\G2Design\Database::store($sitesetting);
 			}
 			return false;
 		}

@@ -99,7 +99,7 @@ class Sites extends G2Design\ClassStructs\Module {
 			$sections = [];
 			$sections[] = Admin\Section\Navigation::getInstance("Manage: $site->name", $site_slug, new Sites\Backend\ManageSite($site, \Admin::$slug . "/" . $site_slug))
 					->add_controller('Site Content', $site_slug . '/content', new Sites\Backend\MultiEntity\Content($site, \Admin::$slug . "/" . $site_slug . "/content"))
-//					->add_controller('Site Assets', $site_slug . '/assets', new Sites\Backend\MultiEntity\Assets($site, \Admin::$slug . "/" . $site_slug . "/assets"))
+					->add_controller('Site Assets', $site_slug . '/assets', new Sites\Backend\MultiEntity\Assets($site, \Admin::$slug . "/" . $site_slug . "/assets"))
 					->add_controller('News, Events and Competitions', $site_slug . '/posts', new Sites\Backend\Posts($site, \Admin::$slug . "/" . $site_slug . "/posts"))
 					->add_controller('Store Directory', $site_slug . '/store-directory', new Sites\Backend\StoreDirectory($site, \Admin::$slug . "/" . $site_slug . "/store-directory"))
 					->add_controller('Settings', $site_slug . '/settings', new Sites\Backend\Settings($site, \Admin::$slug . "/" . $site_slug . "/settings"));
