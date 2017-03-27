@@ -27,6 +27,7 @@ class Store  extends \G2Design\G2App\Model {
 		
 		if( !$form->is_posted() ) {
 			$form->data(['name' => $store->name]);
+			$form->data(['shopNumber' => $store->shopNumber]);
 			$form->data(['tel' => $store->tel]);
 			$form->data(['description' => $store->description]);
 			
@@ -62,15 +63,15 @@ class Store  extends \G2Design\G2App\Model {
 
 			}
 			
-			$file = $form->data()['picture']; /* @var $file \Form\File\Upload */
+//			$file = $form->data()['picture']; /* @var $file \Form\File\Upload */
 			
 			\G2Design\Database::store($store);
 			
-			if($file->uploaded()) {
-				$file = File::create_file($file);
-				File::createAsset($store, 'picture', $file);
-				
-			}
+//			if($file->uploaded()) {
+//				$file = File::create_file($file);
+//				File::createAsset($store, 'picture', $file);
+//				
+//			}
 			
 			return true;
 			

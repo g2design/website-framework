@@ -117,7 +117,17 @@ class File extends \G2Design\G2App\Model {
 		$form = new \Form\Form(\G2Design\G2App\View::getInstance('forms/asset')->render(true));
 		
 		if($form->is_posted()) {
+			$file = $form->data()['file']; /* @var $file \Form\File\Upload */
 			
+			if($file->uploaded()) {
+				$file = self::create_file($file);
+				$asset->file = $file;
+				$asset->name = $form->data()['name'];
+				$asset->slug = \G2Design\Utils\Functions::slugify($asset->name);
+				
+				Database::store($asset);
+				return true;
+			}
 		}
 		
 		return $form->parse();

@@ -92,4 +92,26 @@ class Directory extends ApiController {
 		
 	}
 	
+	function getStores(){
+		$stores = $this->site->ownStore;
+		
+		$processed = [];
+		
+		foreach($stores as $store) {
+			$store_d = [
+				'shop_number' => $store->shopNumber,
+				'name' => $store->name,
+				'tel' => $store->tel,
+				'description' => $store->description
+			];
+			$categories = $store->sharedStorecategoryList;
+			foreach($categories as $category) {
+				$store_d['categories'][] = $category->name;
+			}
+			$processed[] = $store_d;
+		}
+		
+		return $processed;
+	}
+	
 }
