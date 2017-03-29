@@ -102,12 +102,12 @@ class Directory extends ApiController {
 				'shop_number' => $store->shopNumber,
 				'name' => $store->name,
 				'tel' => $store->tel,
-				'description' => $store->description
+				'description' => $store->description,
+				'categories' => $store->categories
 			];
-			$categories = $store->sharedStorecategoryList;
-			foreach($categories as $category) {
-				$store_d['categories'][] = $category->name;
-			}
+			
+			$tradinghours = $store->ownTradinghour ? $store->ownTradinghour : $this->site->ownTradinghour;
+			$store_d['tradingHours'] = \G2Design\Database::exportAll($tradinghours);
 			$processed[] = $store_d;
 		}
 		

@@ -25,7 +25,7 @@ class Settings extends ApiController{
 				return $setting->value;
 			} else {
 				//Create this setting in database
-				$sitesetting = \G2Design\Database::dispense('sitesetting', 'site_id = :site AND name = :setting');
+				$sitesetting = \G2Design\Database::dispense('sitesetting');
 				$sitesetting->site = $this->site;
 				$sitesetting->setting = $setting;
 				$sitesetting->value = false;

@@ -25,12 +25,14 @@ class StoreDirectory extends SiteControllerAbstract {
 
 		$table->add_field('name', 'Store');
 		$table->add_function('[admin]', 'Manage');
+		$table->add_function($this->slug . '/store/[id]', 'Edit');
 
 		$site_id = $this->site->id;
 		if ($site_id) {
 			$site = Database::load('site', $site_id);
 			$site_slug = 'sites/manage/' . Functions::slugify($site->name);
 			$table->add_function('admin/' . $site_slug . '/store-directory/delete-store/[id]', 'Delete Store', ['confirm-delete']);
+			
 		}
 
 		return \Admin\Page::getInstance('Store Directory')

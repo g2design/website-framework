@@ -29,15 +29,10 @@
 		<textarea name="description" id=""></textarea>
 	</div>
 	<div class="row">
-
 		<div class="input-field col s12">
-			<div class="chips" data-target='#Tags' data-availabletags='{{ categories }}'>
-			</div>
+			<input id="Tags" type="text" name="categories">
 			<label for="Tags">Categories</label>
 		</div>
-		<input id="Tags" type="text" name="categories" class="hide">
-
-
 	</div>
 
 	<div class="row">{{ form.button('Save') }}</div>

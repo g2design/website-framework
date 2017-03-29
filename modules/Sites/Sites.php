@@ -109,10 +109,9 @@ class Sites extends G2Design\ClassStructs\Module {
 			foreach ($site->ownStore as $store) {
 				$shortend = $site_slug . "/store-directory/" . G2Design\Utils\Functions::slugify($store->name);
 				$store_slug = \Admin::$slug . "/" . $shortend;
-				if (!isset($store->admin)) {
-					$store->admin = $store_slug;
-					G2Design\Database::store($store);
-				}
+				$store->admin = $store_slug;
+				G2Design\Database::store($store);
+				
 				$admin->controller($shortend, new Sites\Backend\Store\StoreManager($site, $store, $store_slug));
 //				$admin->controller($shortend.'/assets', new Sites\Backend\MultiEntity\Assets($store, $shortend.'/assets'));
 			}
