@@ -27,50 +27,51 @@ class Store  extends \G2Design\G2App\Model {
 		
 		if( !$form->is_posted() ) {
 			$form->data(['name' => $store->name]);
+			$form->data(['shopNumber' => $store->shopNumber]);
 			$form->data(['tel' => $store->tel]);
 			$form->data(['description' => $store->description]);
-			
+			$form->data(['categories' => $store->categories]);
 			$cats = [];
 			
-			//Convert categories to json
-			foreach($store->sharedStorecategory as $cat) {
-				$cats[] = ['tag' => $cat->name];
-			}
-			
-			$form->data(['categories' => json_encode($cats)]);
+//			//Convert categories to json
+//			foreach($store->sharedStorecategory as $cat) {
+//				$cats[] = ['tag' => $cat->name];
+//			}
+//			
+//			$form->data(['categories' => json_encode($cats)]);
 		}
 		
 		if($form->is_posted() && $form->validate()) {
 			
 			foreach ($form->data() as $field => $value) {
 				
-				if ( $field != 'categories' && is_string($value) && !empty($field)) {
+				if ( /*$field != 'categories' && */ is_string($value) && !empty($field)) {
 					$store->{$field} = $value;
 				}
 			}
 			
 			//Process the Supplied Categories to respective entities
 			try {
-				$cats = json_decode($form->data()['categories']);
-				foreach($cats as $category) {
-					$catob = $cm->findCategory($store, $category->tag);
-					if($catob) {
-						$store->sharedStorecategory[] = $catob;
-					}
-				}
+//				$cats = json_decode($form->data()['categories']);
+//				foreach($cats as $category) {
+//					$catob = $cm->findCategory($store, $category->tag);
+//					if($catob) {
+//						$store->sharedStorecategory[] = $catob;
+//					}
+//				}
 			} catch (Exception $ex) {
 
 			}
 			
-			$file = $form->data()['picture']; /* @var $file \Form\File\Upload */
+//			$file = $form->data()['picture']; /* @var $file \Form\File\Upload */
 			
 			\G2Design\Database::store($store);
 			
-			if($file->uploaded()) {
-				$file = File::create_file($file);
-				File::createAsset($store, 'picture', $file);
-				
-			}
+//			if($file->uploaded()) {
+//				$file = File::create_file($file);
+//				File::createAsset($store, 'picture', $file);
+//				
+//			}
 			
 			return true;
 			

@@ -62,7 +62,6 @@ class File extends \G2Design\G2App\Model {
 
 	static function getAssetLink(\RedBeanPHP\OODBBean $parent, $name, $create = false) {
 		
-		
 		$links = $parent->ownAsset;
 		foreach ($links as $link) {
 			if ($link->name == $name) {
@@ -71,12 +70,12 @@ class File extends \G2Design\G2App\Model {
 		}
 
 
-		if ($create) {
+		if ( $create ) {
 			$link = Database::dispense('asset');
 			$type = $parent->getMeta('type');
 			$link->$type = $parent;
 			$link->name = $name;
-
+			$link->slug = \G2Design\Utils\Functions::slugify($name);
 			return $link;
 		}
 
@@ -86,6 +85,16 @@ class File extends \G2Design\G2App\Model {
 	static function getAssetFile(\RedBeanPHP\OODBBean $parent, $name) {
 		$link = self::getAssetLink($parent, $name);
 		return $link && $link->file ? $link->file : false;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param \RedBeanPHP\OODBBean $parent
+	 * @return type
+	 */
+	static function getAssets(\RedBeanPHP\OODBBean $parent) {
+		return $parent->ownAsset;
 	}
 
 	/**
@@ -98,8 +107,30 @@ class File extends \G2Design\G2App\Model {
 	static function createAsset(\RedBeanPHP\OODBBean $parent, $name, \RedBeanPHP\OODBBean $file) {
 		$link = self::getAssetLink($parent, $name, true);
 		$link->file = $file;
+		
 
 		Database::store($link);
+	}
+	
+	function form(\RedBeanPHP\OODBBean $asset) {
+		
+		$form = new \Form\Form(\G2Design\G2App\View::getInstance('forms/asset')->render(true));
+		
+		if($form->is_posted()) {
+			$file = $form->data()['file']; /* @var $file \Form\File\Upload */
+			
+			if($file->uploaded()) {
+				$file = self::create_file($file);
+				$asset->file = $file;
+				$asset->name = $form->data()['name'];
+				$asset->slug = \G2Design\Utils\Functions::slugify($asset->name);
+				
+				Database::store($asset);
+				return true;
+			}
+		}
+		
+		return $form->parse();
 	}
 
 }

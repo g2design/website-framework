@@ -3,11 +3,8 @@ route = "/"
 layout = "layouts/test.twig"
 
 ==
-
-$page->before(function($page){
-	$page->params['test']= 'Testing reference variable';
-});
-
+header('Location: admin');
+exit;
 ==
 {% set layout = this.config().layout %}
 {% extends [layout, "layouts/base.twig"] %}

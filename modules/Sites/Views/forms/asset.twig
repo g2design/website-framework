@@ -1,0 +1,7 @@
+{% import "macros/forms.twig" as form %}
+
+<form action="" method="POST">
+	<div class="row">{{ form.input('name',true) }}</div>
+	<div class="row">{{ form.file('file', 'File','image/jpeg;image/png;image/gif', 'featureimage') }}</div>
+	<div class="row">{{ form.button('Save') }}</div>
+</form>

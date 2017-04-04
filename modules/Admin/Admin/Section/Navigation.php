@@ -8,15 +8,15 @@ class Navigation extends \Admin\Section {
 	var $subs = [];
 	var $title = '';
 	var $route = '';
-	
+	static $init = false;
+
 	public function __construct($title, $route, $controller = false) {
 		$this->title = $title;
 		$this->route = $route;
-		
+
 		$this->default_controller = $controller;
-		
 	}
-	
+
 	/**
 	 * Creates an instance of the navigation section
 	 * 
@@ -28,22 +28,26 @@ class Navigation extends \Admin\Section {
 	 */
 	public static function getInstance($title, $route, $controller = false) {
 		$class = get_class();
-		return new $class($title, $route,$controller);
+		return new $class($title, $route, $controller);
 	}
 
 	public function init(\Admin $admin) {
-		
-		//Init default controller
-		if($this->default_controller) {
-			$admin->controller($this->route, $this->default_controller);
-		}
-		
-		//Init all other controllers
-		foreach($this->controllers as $controller) {
-			$admin->controller($controller['slug'], $controller['controller']);
+
+		if (!isset(self::$init[$this->title]) || !self::$init[$this->title]) {
+			//Init default controller
+			if ($this->default_controller) {
+				$admin->controller($this->route, $this->default_controller);
+			}
+
+			//Init all other controllers
+			foreach ($this->controllers as $controller) {
+				$admin->controller($controller['slug'], $controller['controller']);
+			}
+
+			self::$init[$this->title] = true;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param type $label
@@ -55,7 +59,7 @@ class Navigation extends \Admin\Section {
 			'label' => $label,
 			'route' => $link
 		];
-		
+
 		return $this;
 	}
 

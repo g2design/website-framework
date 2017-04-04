@@ -24,6 +24,7 @@ class Index extends \G2Design\G2App\Controller {
 			//Get current admin
 			
 			//Redirect to this admins roles prefered location
+			// Redirect to this admins redirect screen if saved
 			
 		}
 			
