@@ -10,5 +10,10 @@
 			"password": "",
 			"default": true
 		}
+	},
+	"facebook": {
+		"app_id": "1456811564578728",
+		"app_secret": "843f5c8dc5f7eea762f6ebb00b309532",
+		"default_graph_version": "v2.3"
 	}
 }

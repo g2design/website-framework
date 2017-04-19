@@ -58,4 +58,6 @@ $(document).ready(function () {
 		} else
 			return false;
 	});
+	
+	$('.dynatable').dynatable();
 });

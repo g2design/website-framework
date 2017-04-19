@@ -77,7 +77,7 @@ class Sites extends G2Design\ClassStructs\Module {
 
 	function api_controllers() {
 
-		$site = $site = self::authed_site();
+		$site = self::authed_site();
 		G2Design\G2App::getInstance()->router->filter('json_response', "\Sites\Filter\RouteFilter::afterJson");
 		G2Design\G2App::getInstance()->router->group(['after' => 'json_response'], function($router) use ($site) {
 			/* @var $router \Phroute\Phroute\RouteCollector */
@@ -86,6 +86,7 @@ class Sites extends G2Design\ClassStructs\Module {
 			$router->controller('api/resources/content', Sites\Api\Content::getInstance($site));
 			$router->controller('api/settings', Sites\Api\Settings::getInstance($site));
 			$router->controller('api/directory', Sites\Api\Directory::getInstance($site));
+			$router->controller('api/socials', Sites\Api\Social::getInstance($site));
 		});
 	}
 
@@ -102,7 +103,9 @@ class Sites extends G2Design\ClassStructs\Module {
 					->add_controller('Site Assets', $site_slug . '/assets', new Sites\Backend\MultiEntity\Assets($site, \Admin::$slug . "/" . $site_slug . "/assets"))
 					->add_controller('News, Events and Competitions', $site_slug . '/posts', new Sites\Backend\Posts($site, \Admin::$slug . "/" . $site_slug . "/posts"))
 					->add_controller('Store Directory', $site_slug . '/store-directory', new Sites\Backend\StoreDirectory($site, \Admin::$slug . "/" . $site_slug . "/store-directory"))
-					->add_controller('Settings', $site_slug . '/settings', new Sites\Backend\Settings($site, \Admin::$slug . "/" . $site_slug . "/settings"));
+					->add_controller('Settings', $site_slug . '/settings', new Sites\Backend\Settings($site, \Admin::$slug . "/" . $site_slug . "/settings"))
+					->add_controller('Social Media Settings', $site_slug. '/socials', new \Sites\Backend\Socials\Index($site, $site_slug. '/socials'))
+					;
 
 
 			//Register all stores controller that is on this site

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5d1c32e9dad106d2f6eecdb2df52d5af",
-    "content-hash": "1e5b0f8a56e61b8140b9653b6db69584",
+    "hash": "71eda0ecd84ead98da99684eead04aef",
+    "content-hash": "8670954f3cabe5d4278c09c6a2e0e8c0",
     "packages": [
         {
             "name": "aura/session",
@@ -281,6 +281,64 @@
             "time": "2017-02-16 13:24:20"
         },
         {
+            "name": "facebook/graph-sdk",
+            "version": "5.4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-graph-sdk.git",
+                "reference": "26bc142126ec9381f1cb874a9c74ca282a40e6a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/26bc142126ec9381f1cb874a9c74ca282a40e6a8",
+                "reference": "26bc142126ec9381f1cb874a9c74ca282a40e6a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                },
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2017-03-22 10:57:38"
+        },
+        {
             "name": "g2design/g2app",
             "version": "dev-master",
             "source": {
@@ -363,12 +421,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "a1c4a74bf31d4e41d783fafb635c806cc19c2e9b"
+                "reference": "b517bd912afa5aa1033ce434d7138641fd6c31ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/a1c4a74bf31d4e41d783fafb635c806cc19c2e9b",
-                "reference": "a1c4a74bf31d4e41d783fafb635c806cc19c2e9b",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b517bd912afa5aa1033ce434d7138641fd6c31ab",
+                "reference": "b517bd912afa5aa1033ce434d7138641fd6c31ab",
                 "shasum": ""
             },
             "require": {
@@ -420,7 +478,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-03-22 11:33:29"
+            "time": "2017-04-07 20:03:48"
         },
         {
             "name": "guzzlehttp/promises",
@@ -428,12 +486,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+                "reference": "73815f322dc2d2aa711f8af41f87d3e9d9246bae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
-                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/73815f322dc2d2aa711f8af41f87d3e9d9246bae",
+                "reference": "73815f322dc2d2aa711f8af41f87d3e9d9246bae",
                 "shasum": ""
             },
             "require": {
@@ -471,7 +529,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-12-20 10:07:11"
+            "time": "2017-03-28 16:54:57"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -876,12 +934,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "3266b6e257992887035c8952918607f5b858aaf8"
+                "reference": "4cdd014b809867f4c040523011d2c3607d55e6b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/3266b6e257992887035c8952918607f5b858aaf8",
-                "reference": "3266b6e257992887035c8952918607f5b858aaf8",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/4cdd014b809867f4c040523011d2c3607d55e6b4",
+                "reference": "4cdd014b809867f4c040523011d2c3607d55e6b4",
                 "shasum": ""
             },
             "require": {
@@ -946,7 +1004,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-03-20 10:21:06"
+            "time": "2017-04-10 07:58:43"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -998,12 +1056,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "2b9e2f71b722f7c53918ab0c25f7646c2013f17d"
+                "reference": "c3cbf079466fad893e576d072c1f9daebfe04f95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
-                "reference": "2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c3cbf079466fad893e576d072c1f9daebfe04f95",
+                "reference": "c3cbf079466fad893e576d072c1f9daebfe04f95",
                 "shasum": ""
             },
             "require": {
@@ -1041,7 +1099,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-03-05 18:23:57"
+            "time": "2017-04-09 17:49:47"
         },
         {
             "name": "paragonie/random_compat",
@@ -1617,12 +1675,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "54f65a2160bb98376455f29f2ddf1de676d4b8ed"
+                "reference": "6f93d828043df224708300702d0022b24f09f046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/54f65a2160bb98376455f29f2ddf1de676d4b8ed",
-                "reference": "54f65a2160bb98376455f29f2ddf1de676d4b8ed",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/6f93d828043df224708300702d0022b24f09f046",
+                "reference": "6f93d828043df224708300702d0022b24f09f046",
                 "shasum": ""
             },
             "require": {
@@ -1662,7 +1720,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-21 10:07:34"
+            "time": "2017-04-12 14:14:56"
         },
         {
             "name": "symfony/dom-crawler",
@@ -1670,12 +1728,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "8e1daf43665f93b0dfc2d47d975e964bf44f018a"
+                "reference": "921c1edcf6dc1e82867c85e6d58eac40bd47460f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/8e1daf43665f93b0dfc2d47d975e964bf44f018a",
-                "reference": "8e1daf43665f93b0dfc2d47d975e964bf44f018a",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/921c1edcf6dc1e82867c85e6d58eac40bd47460f",
+                "reference": "921c1edcf6dc1e82867c85e6d58eac40bd47460f",
                 "shasum": ""
             },
             "require": {
@@ -1718,7 +1776,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-21 10:07:34"
+            "time": "2017-04-12 14:14:56"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1893,12 +1951,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "b9d0d00d5fee4f27e2a0cc2917a683ca03d4b24c"
+                "reference": "34b680b099972adb601873d8890ec26e5bb17b94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/b9d0d00d5fee4f27e2a0cc2917a683ca03d4b24c",
-                "reference": "b9d0d00d5fee4f27e2a0cc2917a683ca03d4b24c",
+                "url": "https://api.github.com/repos/symfony/process/zipball/34b680b099972adb601873d8890ec26e5bb17b94",
+                "reference": "34b680b099972adb601873d8890ec26e5bb17b94",
                 "shasum": ""
             },
             "require": {
@@ -1934,7 +1992,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-04 12:23:47"
+            "time": "2017-04-12 14:14:56"
         },
         {
             "name": "twig/twig",
@@ -1942,12 +2000,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "c622995d6da98d41ad50b3c5d366b8ebf6491f27"
+                "reference": "dc70f3e826d8783b07eec2997dd3e6ca0b44ad1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c622995d6da98d41ad50b3c5d366b8ebf6491f27",
-                "reference": "c622995d6da98d41ad50b3c5d366b8ebf6491f27",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/dc70f3e826d8783b07eec2997dd3e6ca0b44ad1f",
+                "reference": "dc70f3e826d8783b07eec2997dd3e6ca0b44ad1f",
                 "shasum": ""
             },
             "require": {
@@ -1996,7 +2054,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-22 15:40:48"
+            "time": "2017-04-05 23:23:01"
         },
         {
             "name": "wa72/htmlpagedom",
@@ -2060,12 +2118,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wixel/GUMP.git",
-                "reference": "c8c59431dfcf1d40cbba02a5a87f5c3d2941ca78"
+                "reference": "01481cf5cfd5718001d00c4e28ef2d6041e07353"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/c8c59431dfcf1d40cbba02a5a87f5c3d2941ca78",
-                "reference": "c8c59431dfcf1d40cbba02a5a87f5c3d2941ca78",
+                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/01481cf5cfd5718001d00c4e28ef2d6041e07353",
+                "reference": "01481cf5cfd5718001d00c4e28ef2d6041e07353",
                 "shasum": ""
             },
             "type": "library",
@@ -2114,7 +2172,7 @@
             ],
             "description": "A fast, extensible & stand-alone PHP input validation class that allows you to validate any data",
             "homepage": "https://wixelhq.com/",
-            "time": "2017-03-22 10:36:05"
+            "time": "2017-04-07 22:14:13"
         },
         {
             "name": "yeriomin/redbean-single-file",

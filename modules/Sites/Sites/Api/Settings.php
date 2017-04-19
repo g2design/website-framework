@@ -19,6 +19,7 @@ class Settings extends ApiController{
 	function getIndex($setting = false) {
 		
 		if($setting) {
+			$s_name = $setting;
 			$setting = \G2Design\Database::findOne('sitesetting','site_id = :site AND name = :setting',['site' => $this->site->id, 'setting' => $setting]);
 			
 			if($setting) {
@@ -27,7 +28,7 @@ class Settings extends ApiController{
 				//Create this setting in database
 				$sitesetting = \G2Design\Database::dispense('sitesetting');
 				$sitesetting->site = $this->site;
-				$sitesetting->setting = $setting;
+				$sitesetting->name = $s_name;
 				$sitesetting->value = false;
 				
 				\G2Design\Database::store($sitesetting);

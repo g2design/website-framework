@@ -47,4 +47,21 @@ class Setting {
 		return $form->parse();
 	}
 	
+	static function program_setting(\RedBeanPHP\OODBBean $entity, $name, $value = false) {
+		$type = $entity->getMeta('type');
+		
+		if($value) { //Call the save function
+			$setting = Database::findOrCreate('setting',["{$type}_id" => $entity->id, 'name' => $name]);
+			$setting->value = $value;
+			
+			Database::store($setting);
+		}
+		
+		if(!isset($setting)) {
+			$setting = current(Database::findLike('setting',["{$type}_id" => $entity->id, 'name' => $name]));
+		}
+		
+		return $setting && $setting->getID() ? $setting->value : false; 
+	}
+	
 }

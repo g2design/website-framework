@@ -26,6 +26,8 @@ class StoreDirectory extends SiteControllerAbstract {
 		$table->add_field('name', 'Store');
 		$table->add_function('[admin]', 'Manage');
 		$table->add_function($this->slug . '/store/[id]', 'Edit');
+		$table->classes = 'dynatable';
+		$table->limit = 999;
 
 		$site_id = $this->site->id;
 		if ($site_id) {

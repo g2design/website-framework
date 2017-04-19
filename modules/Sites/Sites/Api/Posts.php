@@ -20,6 +20,9 @@ class Posts extends ApiController {
 		
 		$posts_prcessed = [];
 		foreach($posts as $post) {
+//			if(!$post->status != "Published") {
+//				continue;
+//			}
 			$post->file;
 			$post->slug = \G2Design\Utils\Functions::slugify($post->title);
 			

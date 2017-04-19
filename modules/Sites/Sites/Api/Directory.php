@@ -95,9 +95,12 @@ class Directory extends ApiController {
 	function getStores(){
 		$stores = $this->site->ownStore;
 		
+		$stores = \G2Design\Database::findAll( 'store','site_id = :site ORDER BY store.`order` ASC, store.name ASC', [ 'site' => $this->site->id ] );
+		
 		$processed = [];
 		
 		foreach($stores as $store) {
+			
 			$store_d = [
 				'shop_number' => $store->shopNumber,
 				'name' => $store->name,
